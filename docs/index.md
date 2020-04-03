@@ -22,6 +22,8 @@ output:
 
 
 
+
+
 ```r
 # Simulation from Gamma(alpha,1) distribution using accept-reject 
 # and a Gamma(a,b) proposal distribution.
@@ -49,7 +51,7 @@ hist(p, freq = FALSE)
 curve(dgamma(x,3.7,1), add=TRUE,col='red')
 ```
 
-![](C:/Users/isakp/OneDrive/Dokumenter/GitHub/Rcode/docs/index_files/figure-html/Gamma simulation, might be useful-1.png)<!-- -->
+![](README_figs/README-Gamma simulation, might be useful-1.png)<!-- -->
 
 
 
@@ -105,14 +107,14 @@ mci_int <- function(n)
 k = mci_int(10000)
 ```
 
-![](C:/Users/isakp/OneDrive/Dokumenter/GitHub/Rcode/docs/index_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+![](README_figs/README-unnamed-chunk-2-1.png)<!-- -->
 
 ```r
 cat(k)
 ```
 
 ```
-## 5.348879
+## 5.339329
 ```
 
 
