@@ -17,14 +17,12 @@ output:
 
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 
 
-```{r Gamma simulation, might be useful}
 
+
+```r
 # Simulation from Gamma(alpha,1) distribution using accept-reject 
 # and a Gamma(a,b) proposal distribution.
 
@@ -51,9 +49,12 @@ hist(p, freq = FALSE)
 curve(dgamma(x,3.7,1), add=TRUE,col='red')
 ```
 
+![](C:/Users/isakp/OneDrive/Dokumenter/GitHub/Rcode/docs/index_files/figure-html/Gamma simulation, might be useful-1.png)<!-- -->
 
 
-```{r}
+
+
+```r
 # Monte carlo integration
 
 mci_int <- function(n) 
@@ -102,10 +103,16 @@ mci_int <- function(n)
   return(1/n*sum(w_x))  
 }
 k = mci_int(10000)
+```
 
+![](C:/Users/isakp/OneDrive/Dokumenter/GitHub/Rcode/docs/index_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+
+```r
 cat(k)
+```
 
-
+```
+## 5.348879
 ```
 
 
