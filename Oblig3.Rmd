@@ -7,19 +7,9 @@ output: rmarkdown::github_document
 ---
 
 
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  fig.path = "README_figs/README-"
-)
-```
-
-
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 
 
 ```{r Gamma simulation, might be useful}

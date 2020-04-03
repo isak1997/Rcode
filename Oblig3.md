@@ -30,7 +30,7 @@ hist(p, freq = FALSE)
 curve(dgamma(x,3.7,1), add=TRUE,col='red')
 ```
 
-![](README_figs/README-Gamma%20simulation,%20might%20be%20useful-1.png)<!-- -->
+![](Oblig3_files/figure-gfm/Gamma%20simulation,%20might%20be%20useful-1.png)<!-- -->
 
 ``` r
 # Monte carlo integration
@@ -83,10 +83,10 @@ mci_int <- function(n)
 k = mci_int(10000)
 ```
 
-![](README_figs/README-unnamed-chunk-2-1.png)<!-- -->
+![](Oblig3_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 ``` r
 cat(k)
 ```
 
-    ## 5.324721
+    ## 5.248631
