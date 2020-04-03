@@ -2,15 +2,16 @@
 title: "Oblig 3"
 author: "Isak Edvardsen"
 date: "3 april 2020"
-output: 
-  html_document:
-    keep_md: true
-
+output: rmarkdown::github_document
 ---
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set("README.md")
 ```
 
 
@@ -66,7 +67,7 @@ mci_int <- function(n)
   
   w_x <- mci.ex(u)
   
-  hplot <- cumsum(w_x)/seq
+  hplot <- cumsum(w_x)/seq(1:n)
   
   # stdh <- sqrt( cumsum(w_x^2)/seq - (w_x)^2) Nan produced???
   
@@ -89,6 +90,7 @@ mci_int <- function(n)
   
   # plot(hplot-stdh/sqrt(seq),type="l",col="red",
   #     xlab="",ylab="",lty=2)
+  
   return(1/n*sum(w_x))  
 }
 
@@ -117,21 +119,36 @@ mci.gamma()
 
 ```{r}
 
-riemann.gamma = function(n=10000, alfa = 3.7, lambda =1)
+riemann.gamma = function(n=6000, alfa = 3.7, lambda =1)
 {	
 	x = rgamma(n, alfa, lambda)
 	x = sort(x)
 	
-	f <- function(x,alfa = 3.7, lambda =1) lambda^alfa * 1/gamma(alfa)*exp(-lambda*alfa)*x^(alfa-1)
+	f <- function(x, alfa = 3.7, lambda =1) lambda^alfa * 1/gamma(alfa)*x^(alfa-1)*exp(-lambda*x)
 	  
 	g <- function(x) x*log(x)
 	
-	k <- ( g(x[-n]) * f(x[-n]) * (x[-1]-x[-n]) ) 
+
+	k = NULL
+	for (i in 1:n-1) k[i] <- ( g(x[i]) * f(x[i]) * (x[i+1]-x[i]) )
 	
-	return(1/(n-1)*sum(k))
+	plot(cumsum(k), type = 'l', lwd=2)
+	
+	# georg: k <- ( g(x[-n]) * f(x[-n]) * (x[-1]-x[-n]) )
+
+	
+#	Z = x
+#	p <- function(x) cumsum( g(Z[x]) * f(Z[x]) * (Z[x+1]-Z[x])/x )
+#	curve((p(x)), from = 1, to=n-1 )
+	
+	
+	
+	return(sum(k))
 }
 
-riemann.gamma()
+k = riemann.gamma(n=5000)
+
+k
 
 ```
 
