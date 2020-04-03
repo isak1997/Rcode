@@ -1,29 +1,9 @@
----
-title: "Oblig 3"
-author: "Isak Edvardsen"
-date: "3 april 2020"
-output: rmarkdown::github_document
+Oblig 3
+================
+Isak Edvardsen
+3 april 2020
 
----
-
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  fig.path = "README_figs/README-"
-)
-```
-
-
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
-
-```{r Gamma simulation, might be useful}
-
+``` r
 # Simulation from Gamma(alpha,1) distribution using accept-reject 
 # and a Gamma(a,b) proposal distribution.
 
@@ -50,9 +30,9 @@ hist(p, freq = FALSE)
 curve(dgamma(x,3.7,1), add=TRUE,col='red')
 ```
 
+![](README_figs/README-Gamma%20simulation,%20might%20be%20useful-1.png)<!-- -->
 
-
-```{r}
+``` r
 # Monte carlo integration
 
 mci_int <- function(n) 
@@ -101,12 +81,12 @@ mci_int <- function(n)
   return(1/n*sum(w_x))  
 }
 k = mci_int(10000)
-
-cat(k)
-
-
 ```
 
+![](README_figs/README-unnamed-chunk-2-1.png)<!-- -->
 
+``` r
+cat(k)
+```
 
-
+    ## 5.324721
