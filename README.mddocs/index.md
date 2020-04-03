@@ -1,2 +1,0 @@
-# Rcode
-Computer intensive
