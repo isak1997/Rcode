@@ -154,3 +154,45 @@ k
 
 
 
+```{r}
+# Feil
+
+h <- function(x, alfa=3.7, lambda=1) alfa*log(lambda)+alfa*log(x)+log(log(x))-lambda*x 
+  
+h_d <- function(x, alfa=3.7, lambda=1) alfa/x + 1/(x*log(x)) - lambda
+
+h_dd <-function(x, alfa=3.7, lambda=1) return(-(alfa*(log(x))^2 + log(x)+1)/(x^2*(log(x))^2))
+
+sd <-function(x, n) sqrt(-1/(n*h_dd(x0)))
+
+sigma = sd(x0, 10000)
+
+x0 = 4.337
+
+I = exp(h(x0)) * sqrt(2*pi)*sigma*(pnorm((Inf-x0)/sigma) - pnorm((1-x0)/sigma))
+
+
+```
+
+
+
+
+```{r}
+
+h <- function(x, alfa=3.7) alfa*log(x) + log(log(x)) - x 
+  
+h_d <- function(x, alfa=3.7) alfa/x + 1/(x*log(x)) - 1
+
+h_dd <-function(x, alfa=3.7) return(-(alfa*(log(x))^2 + log(x)+1)/(x^2*(log(x))^2))
+
+sd <-function(x, n) sqrt(-1/(n*h_dd(x0)))
+
+x0 = 4.3773076886
+
+sigma = sd(x0, 10000)
+
+I = exp(h(x0)) * sqrt(2*pi)*sigma*(pnorm((Inf-x0)/sigma) - pnorm((0-x0)/sigma))
+
+I/gamma(3.7)
+
+```
