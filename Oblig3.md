@@ -85,7 +85,7 @@ mci_int(10000)
 
 ![](Oblig3_files/figure-gfm/Monte%20carlo%20integration-1.png)<!-- -->
 
-    ## [1] 5.313342
+    ## [1] 5.344904
 
 ``` r
 # Computes the MCI approximation to E[Xlog(X)] for X~Gamma(3.7, 1).
@@ -99,7 +99,7 @@ mci.gamma = function(n=10000)
 mci.gamma()
 ```
 
-    ## [1] 5.397627
+    ## [1] 5.255851
 
 ``` r
 riemann.gamma = function(n=6000, alfa = 3.7, lambda =1)
@@ -119,10 +119,9 @@ riemann.gamma = function(n=6000, alfa = 3.7, lambda =1)
     
     # georg: k <- ( g(x[-n]) * f(x[-n]) * (x[-1]-x[-n]) )
 
-    
-#   Z = x
-#   p <- function(x) cumsum( g(Z[x]) * f(Z[x]) * (Z[x+1]-Z[x])/x )
-#   curve((p(x)), from = 1, to=n-1 )
+    #Z = x
+    #p <- function(x) cumsum( g(Z[x]) * f(Z[x]) * (Z[x+1]-Z[x])/x )
+    #curve((p(x)), from = 1, to=n-1 )
     
     
     
@@ -138,4 +137,25 @@ k = riemann.gamma(n=5000)
 k
 ```
 
-    ## [1] 5.32977
+    ## [1] 5.319834
+
+``` r
+h <- function(x, alfa=3.7) alfa*log(x) + log(log(x)) - x 
+  
+h_d <- function(x, alfa=3.7) alfa/x + 1/(x*log(x)) - 1
+
+h_dd <-function(x, alfa=3.7) return(-(alfa*(log(x))^2 + log(x)+1)/(x^2*(log(x))^2))
+
+sd <-function(x, n) sqrt(-1/(n*h_dd(x0)))
+
+x0 = 4.3773076886
+
+sigma = sd(x0, 10000)
+
+
+I = exp(h(x0)) * sqrt(-2*pi/h_dd(x0))*(pnorm(sqrt(-h_dd(x0))*(Inf-x0)) - pnorm(sqrt(-h_dd(x0))*(0-x0)))
+
+I/gamma(3.7)
+```
+
+    ## [1] 5.156945

@@ -136,10 +136,9 @@ riemann.gamma = function(n=6000, alfa = 3.7, lambda =1)
 	
 	# georg: k <- ( g(x[-n]) * f(x[-n]) * (x[-1]-x[-n]) )
 
-	
-#	Z = x
-#	p <- function(x) cumsum( g(Z[x]) * f(Z[x]) * (Z[x+1]-Z[x])/x )
-#	curve((p(x)), from = 1, to=n-1 )
+	#Z = x
+	#p <- function(x) cumsum( g(Z[x]) * f(Z[x]) * (Z[x+1]-Z[x])/x )
+	#curve((p(x)), from = 1, to=n-1 )
 	
 	
 	
@@ -154,27 +153,7 @@ k
 
 
 
-```{r}
-# virker med n=1: sigma(x0, 1) 
 
-x0 <- function(x) 
-
-h <- function(x, alfa=3.7) alfa*log(x) + log(log(x)) - x 
-  
-h_d <- function(x, alfa=3.7) alfa/x + 1/(x*log(x)) - 1
-
-h_dd <-function(x, alfa=3.7) return(-(alfa*(log(x))^2 + log(x)+1)/(x^2*(log(x))^2))
-
-sd <-function(x, n) sqrt(-1/(n*h_dd(x0)))
-
-sigma = sd(x0, 1)
-
-x0 = 4.3773076886
-
-I = exp(h(x0)) * sqrt(2*pi)*sigma*(pnorm((Inf-x0)/sigma) - pnorm((0-x0)/sigma))
-
-I/gamma(3.7)
-```
 
 
 
